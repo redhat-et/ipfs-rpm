@@ -1,0 +1,47 @@
+name: build-rpm
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+
+jobs:  
+  rpm-build:
+    runs-on: ubuntu-latest
+    container:
+      image: registry.fedoraproject.org/fedora:35
+    steps:
+      - shell: bash # git must be present before checkout
+        run: sudo dnf install -y copr-cli golang gcc make systemd policycoreutils rpm-build git which rpmdevtools
+
+      - name: Checkout source
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+          path: code
+
+      - name: make srpm
+        shell: bash
+        run: |
+          mkdir -pv ~/rpmbuild/{BUILD,RPMS,SRPMS,SOURCES}
+          echo '%_topdir %(echo $HOME)/rpmbuild' > ~/.rpmmacros
+          spectool -g -C /github/home/rpmbuild/SOURCES ./code/packaging/rpm/go-ipfs.spec
+          rpmbuild -bs ./code/packaging/rpm/go-ipfs.spec
+      
+      - name: make copr dir
+        run: mkdir -p ~/.config/
+
+      - name: generate copr config file
+        shell: bash
+        run: |
+          cat << EOF > ~/.config/copr
+          [copr-cli]
+          login = ${{ secrets.COPR_LOGIN }}
+          username = ${{ secrets.COPR_USER }}
+          token = ${{ secrets.COPR_TOKEN }}
+          copr_url = https://copr.fedorainfracloud.org
+          EOF
+          
+      - name: copr build
+        shell: bash
+        run: copr-cli build cooktheryan/go-ipfs /github/home/rpmbuild/SRPMS/*.rpm --nowait
