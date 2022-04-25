@@ -44,4 +44,4 @@ jobs:
           
       - name: copr build
         shell: bash
-        run: copr-cli build redhat-et/ipfs /github/home/rpmbuild/SRPMS/*.rpm --nowait
+        run: copr-cli build @redhat-et/ipfs /github/home/rpmbuild/SRPMS/*.rpm --nowait
