@@ -56,10 +56,8 @@ EOF
 
 %files
 %{_bindir}/ipfs
-%{_unitdir}ipfs.service
+%{_unitdir}/ipfs.service
 %license src/%{repo}/LICENSE-MIT
-
-chmod 0755 %{buildroot}%{_unitdir}/ipfs.service
 
 %changelog
 * Mon Apr 4 2022 Ryan Cook <rcook@redhat.com> 0.12.1-1
