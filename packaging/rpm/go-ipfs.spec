@@ -34,7 +34,7 @@ make build
 %install
 mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_userunitdir}
-mkdir -p %{buildroot}%{_unitdir}
+mkdir -d -m755 %{buildroot}%{_unitdir}
 
 cp src/github.com/ipfs/go-ipfs/cmd/ipfs/ipfs %{buildroot}%{_bindir}
 
@@ -56,7 +56,7 @@ EOF
 
 %files
 %{_bindir}/ipfs
-%{_userunitdir}ipfs.service
+%{_unitdir}ipfs.service
 %license src/%{repo}/LICENSE-MIT
 
 %changelog
