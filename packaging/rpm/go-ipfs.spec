@@ -56,6 +56,8 @@ EOF
 
 %files
 %{_bindir}/ipfs
+%{_userunitdir}ipfs.service
+%{_unitdir}ipfs@.service
 %license src/%{repo}/LICENSE-MIT
 
 %changelog
