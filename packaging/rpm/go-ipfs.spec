@@ -38,7 +38,7 @@ mkdir -p %{buildroot}%{_unitdir}
 
 cp src/github.com/ipfs/go-ipfs/cmd/ipfs/ipfs %{buildroot}%{_bindir}
 
-cat << EOF >> %{buildroot}%{_unitdir}ipfs@.service
+cat << EOF >> %{buildroot}%{_unitdir}ipfs.service
 [Unit]
 Description=InterPlanetary File System (IPFS) daemon
 Wants=network-online.target
@@ -57,7 +57,6 @@ EOF
 %files
 %{_bindir}/ipfs
 %{_userunitdir}ipfs.service
-%{_unitdir}ipfs@.service
 %license src/%{repo}/LICENSE-MIT
 
 %changelog
