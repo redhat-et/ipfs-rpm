@@ -34,11 +34,11 @@ make build
 %install
 mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_userunitdir}
-mkdir -d -m755 %{buildroot}%{_unitdir}
+mkdir -p %{buildroot}%{_unitdir}
 
 cp src/github.com/ipfs/go-ipfs/cmd/ipfs/ipfs %{buildroot}%{_bindir}
 
-cat << EOF >> %{buildroot}%{_unitdir}ipfs.service
+cat << EOF >> %{buildroot}%{_unitdir}/ipfs.service
 [Unit]
 Description=InterPlanetary File System (IPFS) daemon
 Wants=network-online.target
@@ -58,6 +58,8 @@ EOF
 %{_bindir}/ipfs
 %{_unitdir}ipfs.service
 %license src/%{repo}/LICENSE-MIT
+
+chmod 0755 %{buildroot}%{_unitdir}/ipfs.service
 
 %changelog
 * Mon Apr 4 2022 Ryan Cook <rcook@redhat.com> 0.12.1-1
