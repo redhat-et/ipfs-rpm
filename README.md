@@ -10,4 +10,14 @@ dnf -y install go-ipfs
 ```
 
 ## Starting IPFS
-A systemd file is deployed on the system by the rpm.
+A systemd file is deployed on the system by the rpm. Before running IPFS needs to init.
+
+```
+ipfs init
+```
+
+Once this has been the systemd service can be started.
+
+```
+systemctl enable ipfs --now
+```

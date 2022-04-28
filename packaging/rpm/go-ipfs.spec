@@ -6,7 +6,7 @@
 
 
 Name:           go-ipfs
-Version:        0.12.1
+Version:        0.12.2
 Release:        1%{?dist}
 Summary:        IPFS implementation in Go
 
@@ -67,6 +67,9 @@ EOF
 %license src/%{repo}/LICENSE-MIT
 
 %changelog
+* Thu Apr 28 2022 Ryan Cook <rcook@redhat.com> 0.12.2-2
+- Version bump
+
 * Mon Apr 4 2022 Ryan Cook <rcook@redhat.com> 0.12.1-1
 - Fork of https://github.com/daftaupe/go-ipfs-rpm and version bump
 
