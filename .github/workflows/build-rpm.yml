@@ -26,9 +26,13 @@ jobs:
         shell: bash
         run: |
           mkdir -pv ~/rpmbuild/{BUILD,RPMS,SRPMS,SOURCES}
+          echo "outputting to macros"
+          echo "home is: '$HOME'"
           echo '%_topdir %(echo $HOME)/rpmbuild' > ~/.rpmmacros
-          spectool -g -C /github/home/rpmbuild/SOURCES ./code/packaging/rpm/go-ipfs.spec
-          rpmbuild -bs ./code/packaging/rpm/go-ipfs.spec
+          echo "using spectool"
+          spectool -g -C "$(echo $HOME)/rpmbuild/SOURCES" ./code/packaging/rpm/kubo.spec
+          echo "building rpm"
+          rpmbuild -bs ./code/packaging/rpm/kubo.spec
       
       - name: make copr dir
         run: mkdir -p ~/.config/

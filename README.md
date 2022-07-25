@@ -6,7 +6,7 @@ To install the RPM on your system perform the following.
 
 ```
 dnf copr enable @redhat-et/ipfs
-dnf -y install go-ipfs
+dnf -y install kubo
 ```
 
 ## Starting IPFS
