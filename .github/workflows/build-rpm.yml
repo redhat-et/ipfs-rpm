@@ -26,8 +26,11 @@ jobs:
         shell: bash
         run: |
           mkdir -pv ~/rpmbuild/{BUILD,RPMS,SRPMS,SOURCES}
+          echo "outputting to macros"
           echo '%_topdir %(echo $HOME)/rpmbuild' > ~/.rpmmacros
+          echo "using spectool"
           spectool -g -C /github/home/rpmbuild/SOURCES ./code/packaging/rpm/kubo.spec
+          echo "building rpm"
           rpmbuild -bs ./code/packaging/rpm/kubo.spec
       
       - name: make copr dir
