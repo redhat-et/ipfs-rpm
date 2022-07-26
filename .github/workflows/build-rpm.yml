@@ -34,7 +34,7 @@ jobs:
         run: mkdir -p ~/.config/
 
       - name: generate copr config file
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         shell: bash
         run: |
           cat << EOF > ~/.config/copr
@@ -46,6 +46,6 @@ jobs:
           EOF
           
       - name: copr build
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         shell: bash
         run: copr-cli build @redhat-et/ipfs /github/home/rpmbuild/SRPMS/*.rpm --nowait
