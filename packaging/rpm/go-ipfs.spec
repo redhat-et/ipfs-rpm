@@ -1,11 +1,11 @@
-%define repo github.com/ipfs/go-ipfs
+%define repo github.com/ipfs/kubo
 # golang specifics
-%global golang_version 1.16
+%global golang_version 1.18
 #debuginfo not supported with Go
 %global debug_package %{nil}
 
 
-Name:           go-ipfs
+Name:           kubo
 Version:        0.14.0
 Release:        1%{?dist}
 Summary:        IPFS implementation in Go
