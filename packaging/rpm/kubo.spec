@@ -1,6 +1,6 @@
 %define repo github.com/ipfs/kubo
 # golang specifics
-%global golang_version 1.16
+%global golang_version 1.17
 #debuginfo not supported with Go
 %global debug_package %{nil}
 
