@@ -6,7 +6,7 @@
 
 
 Name:           go-ipfs
-Version:        0.12.2
+Version:        0.14.0
 Release:        1%{?dist}
 Summary:        IPFS implementation in Go
 
@@ -36,7 +36,7 @@ make build
 mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_unitdir}
 
-cp src/github.com/ipfs/go-ipfs/cmd/ipfs/ipfs %{buildroot}%{_bindir}
+cp src/github.com/ipfs/kubo/cmd/ipfs/ipfs %{buildroot}%{_bindir}
 cat << EOF >> %{buildroot}%{_unitdir}/ipfs.service
 [Unit]
 Description=InterPlanetary File System (IPFS) daemon
@@ -67,6 +67,15 @@ EOF
 %license src/%{repo}/LICENSE-MIT
 
 %changelog
+* Mon Jul 25 2022 Oleg Silkin <osilkin@redhat.com> - 0.14.0-1
+- 🛠️ BREAKING CHANGES
+  - Removed mdns_legacy implementation
+- 🔦 Highlights
+  - 🛣️ Delegated Routing
+  - 👥 Rename to Kubo
+  - 🎒 ipfs repo migrate
+  - 🚀 Emoji support in Multibase
+
 * Thu Apr 28 2022 Ryan Cook <rcook@redhat.com> 0.12.2-2
 - Version bump
 
